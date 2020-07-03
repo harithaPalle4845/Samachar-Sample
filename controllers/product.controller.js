@@ -19,12 +19,20 @@ saveProduct=function saveProduct(req,resp){
    
     }
     searchProduct=function searchProduct(req,resp){
-        ProductService.searchProduct(req,resp).then((res) =>{
-            return resp.status(200).json({ status: 200,result:res , message: "Retrieved Products Successfully" });
-       }).catch((err) =>{
-         console.log('found error'+err);
-    })
-        
-       
+        // ProductService.searchProduct(req, resp) ,function(err, results) {
+        //      console.log("sf"+JSON.stringify(results));
+        //      return  resp.status(200).json({ status: 200,result:results , message: "Products Successfully" });
+        // }
+    //     ProductService.searchProduct(req, resp) .then((res) =>{
+    //         return resp.status(200).json({ status: 200,result:res , message: "Products Successfully" });
+    //    }).catch((err) =>{
+    //      console.log('found error'+err);
+    // })
+    console.log(ProductService.searchProduct(req, resp));
         }
-module.exports = { saveProduct,getProducts,searchProduct }
+
+        suggestProducts=function suggestProducts(req,resp){
+        console.log(ProductService.suggestProducts(req, resp));
+            }
+    
+module.exports = { saveProduct,getProducts ,searchProduct,suggestProducts}

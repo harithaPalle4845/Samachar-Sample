@@ -18,4 +18,12 @@ saveCategory=function saveCategory(req,resp){
 })
    
     }
-module.exports = { saveCategory,getCategories }
+    searchCategory=function searchCategory(req,resp){
+        CategoryService.searchCategory(req, resp) ,function(err, results) {
+             console.log("sf"+JSON.stringify(results));
+             resp.json(results);
+        }
+        
+        }
+    
+module.exports = { saveCategory,getCategories ,searchCategory}

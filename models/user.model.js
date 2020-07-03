@@ -1,13 +1,25 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+const mongoosastic = require('mongoosastic');
+var elasticsearch = require('elasticsearch');
+
+
 
 
 var userSchema = new Schema({
     name: {
-      first: String,
-      last: { type: String, trim: true }
+       type:String,es_indexed : true
     },
-    age: { type: Number, min: 0 }
+    age: { type: Number, min: 0 ,es_indexed : true}
+  });
+
+  userSchema.plugin(mongoosastic, {
+    host: process.env.ELASTICSEARCH_URL,
+    port: 9200
   });
   
-  module.exports = User = mongoose.model('user', userSchema);
+  var UserModel = mongoose.model("User", userSchema);
+
+  module.exports = UserModel;
+
+  
